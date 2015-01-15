@@ -2105,6 +2105,7 @@ class ComputeManager(manager.Manager):
     @reverts_task_state
     @wrap_instance_event
     @wrap_instance_fault
+    @hooks.add_hook("run_instance")
     def run_instance(self, context, instance, request_spec,
                      filter_properties, requested_networks,
                      injected_files, admin_password,
@@ -2262,6 +2263,7 @@ class ComputeManager(manager.Manager):
     @reverts_task_state
     @wrap_instance_event
     @wrap_instance_fault
+    @hooks.add_hook("terminate_instance")
     def terminate_instance(self, context, instance, bdms, reservations):
         """Terminate an instance on this host."""
         # NOTE (ndipanov): If we get non-object BDMs, just get them from the
