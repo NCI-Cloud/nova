@@ -136,7 +136,7 @@ class API(base.Base):
             nets,
             net_ids)
 
-        if not context.is_admin:
+        if not (context.is_admin or ('nci_external_net' in context.roles)):
             for net in nets:
                 # Perform this check here rather than in validate_networks to
                 # ensure the check is performed everytime allocate_for_instance
